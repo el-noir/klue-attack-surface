@@ -211,17 +211,45 @@
 @media (max-width: 640px) { .logo-node { width: 72px; height: 72px; } .klue-core { width: 84px; height: 84px; padding: 18px; } }
 @media (prefers-reduced-motion: reduce) { .radar-sweep, .graph-line, .graph-expanded .graph-lines, .graph-expanded .logo-nodes, .graph-branch, .signal, .graph-expanded .scan-ring, .network-link, .klue-core { animation: none; opacity: 1; } }
 
-.benchmark-page { min-height: 100svh; background: #f7f8f6; color: #26332f; padding: 18px clamp(16px, 3vw, 42px) 22px; position: relative; }
-.benchmark-logo { position: absolute; left: clamp(18px, 3vw, 42px); top: 18px; z-index: 2; display: block; width: 30px; height: 30px; transition: transform .25s ease; }
-.benchmark-logo:hover { transform: scale(1.08); }
-.benchmark-logo img { width: 100%; height: 100%; object-fit: contain; }
-.benchmark-graph { max-width: 1240px; margin: 0 auto; animation: benchmark-rise .9s cubic-bezier(.2,.8,.2,1) both; }
-.benchmark-point { animation: benchmark-point-in .7s cubic-bezier(.2,.8,.2,1) both; }
-.benchmark-point-featured { animation-delay: .35s; }
-.benchmark-pulse { animation: benchmark-pulse 2.4s ease-out .9s infinite; transform-box: fill-box; transform-origin: center; }
-.benchmark-projection { stroke: #14945a; stroke-width: 1; stroke-dasharray: 2 7; opacity: .32; animation: benchmark-projection-in 1.2s ease-out .85s both; }
-@keyframes benchmark-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes benchmark-point-in { from { opacity: 0; transform: scale(.45); transform-origin: center; } to { opacity: 1; transform: scale(1); transform-origin: center; } }
-@keyframes benchmark-pulse { 0% { opacity: .42; transform: scale(.72); } 70%, 100% { opacity: 0; transform: scale(1.35); } }
-@keyframes benchmark-projection-in { from { stroke-dashoffset: 80; opacity: 0; } to { stroke-dashoffset: 0; opacity: .32; } }
-@media (prefers-reduced-motion: reduce) { .benchmark-graph, .benchmark-point, .benchmark-point-featured, .benchmark-pulse, .benchmark-projection { animation: none; } }
+.benchmark-page {
+  min-height: 100svh;
+  background: #fafafa;
+  color: #1c1b19;
+  padding: 18px clamp(16px, 3vw, 42px) 22px;
+  display: grid;
+  place-items: center;
+}
+
+.benchmark-graph { max-width: 880px; width: 100%; }
+.benchmark-svg { width: 100%; height: auto; display: block; }
+
+.bench-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: clamp(8px, 2vw, 16px) clamp(4px, 1.5vw, 12px);
+  border: 1px solid rgba(28,27,25,0.08);
+}
+
+.bench-competitor { animation: bench-fade-up .6s cubic-bezier(.2,.8,.2,1) both; }
+.bench-klue-enter { animation: bench-klue-land .7s cubic-bezier(.16,1,.3,1) both; }
+
+.bench-ceiling-draw {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: bench-draw 1.2s cubic-bezier(.23,1,.32,1) forwards;
+}
+
+.bench-zone { animation: bench-zone-in .8s ease .3s both; }
+.bench-fade-in { animation: bench-fade .6s ease .5s both; }
+
+@keyframes bench-fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bench-klue-land { from { opacity: 0; transform: scale(.4) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes bench-draw { to { stroke-dashoffset: 0; } }
+@keyframes bench-zone-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bench-fade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bench-competitor, .bench-klue-enter,
+  .bench-ceiling-draw, .bench-zone, .bench-fade-in { animation: none; opacity: 1; }
+  .bench-ceiling-draw { stroke-dashoffset: 0; }
+}

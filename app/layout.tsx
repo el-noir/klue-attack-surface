@@ -5,7 +5,6 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Klue — Attack Surface Intelligence',
   description: 'Explore Klue attack surface intelligence and benchmark precision against competing AI security scanners.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
@@ -15,10 +14,6 @@ export const metadata: Metadata = {
       {
         url: '/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',
