@@ -210,3 +210,18 @@
 @keyframes pulse { 0%,100% { opacity: .45; transform: translate(-50%, -50%) scale(.94); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); } }
 @media (max-width: 640px) { .logo-node { width: 72px; height: 72px; } .klue-core { width: 84px; height: 84px; padding: 18px; } }
 @media (prefers-reduced-motion: reduce) { .radar-sweep, .graph-line, .graph-expanded .graph-lines, .graph-expanded .logo-nodes, .graph-branch, .signal, .graph-expanded .scan-ring, .network-link, .klue-core { animation: none; opacity: 1; } }
+
+.benchmark-page { min-height: 100svh; background: #f7f8f6; color: #26332f; padding: 26px clamp(20px, 5vw, 72px) 40px; }
+.benchmark-header { display: flex; align-items: center; justify-content: space-between; max-width: 1180px; margin: 0 auto; }
+.benchmark-logo { display: block; width: 34px; height: 34px; transition: transform .25s ease; }
+.benchmark-logo:hover { transform: scale(1.08); }
+.benchmark-logo img { width: 100%; height: 100%; object-fit: contain; }
+.benchmark-nav { display: flex; align-items: center; gap: 22px; color: #71817b; font-size: 13px; }
+.benchmark-nav a { transition: color .2s ease; }
+.benchmark-nav a:hover, .benchmark-nav [aria-current="page"] { color: #26332f; }
+.benchmark-graph { max-width: 1180px; margin: 5vh auto 0; animation: benchmark-rise .9s cubic-bezier(.2,.8,.2,1) both; }
+.benchmark-point { animation: benchmark-point-in .7s cubic-bezier(.2,.8,.2,1) both; }
+.benchmark-point-featured { animation-delay: .35s; }
+@keyframes benchmark-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes benchmark-point-in { from { opacity: 0; transform: scale(.45); transform-origin: center; } to { opacity: 1; transform: scale(1); transform-origin: center; } }
+@media (prefers-reduced-motion: reduce) { .benchmark-graph, .benchmark-point, .benchmark-point-featured { animation: none; } }
