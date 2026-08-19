@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Klue — Attack Surface Map',
-  description: 'Live external exposure intelligence for every connected surface.',
+  title: 'Klue — Attack Surface Intelligence',
+  description: 'Explore Klue attack surface intelligence and benchmark precision against competing AI security scanners.',
   generator: 'v0.app',
   icons: {
     icon: [

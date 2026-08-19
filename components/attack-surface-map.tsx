@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 const klueLogo = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-fic1zzIWQkGwfHsqP1XHI2DsxXuOIf.png'
 
@@ -27,6 +29,10 @@ export function AttackSurfaceMap() {
 
   return (
     <main className="graph-stage" aria-label="Klue attack surface graph">
+      <nav className="absolute left-5 top-5 z-10 flex items-center gap-1 rounded-full border border-[#cdd6d5] bg-white/90 p-1 shadow-sm backdrop-blur" aria-label="Primary">
+        <Button size="sm" className="rounded-full" asChild><Link href="/">Attack surface</Link></Button>
+        <Button size="sm" variant="ghost" className="rounded-full" asChild><Link href="/benchmark">Benchmark</Link></Button>
+      </nav>
       <div className={`graph-canvas ${expanded ? 'graph-expanded' : 'graph-intro'}`}>
         <div className="radar-sweep" aria-hidden="true" />
         <div className="scan-ring scan-ring-one" aria-hidden="true" />
