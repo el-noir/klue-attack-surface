@@ -158,9 +158,29 @@
   body { @apply bg-background text-foreground; }
 }
 
-.logo-node { display: grid; place-items: center; width: 104px; height: 104px; border: 1px solid #cdd6d5; border-radius: 999px; background: #ffffff; transition: border-color .25s, transform .25s; }
-.logo-node:hover, .logo-node-active { border-color: #1e9b63; transform: translate(-50%, -50%) scale(1.07); }
+.graph-stage { min-height: 100svh; display: grid; place-items: center; overflow: hidden; background: #f7f8f6; }
+.graph-canvas { position: relative; width: min(94vw, calc((100svh - 40px) * 1.55), 1120px); aspect-ratio: 1.55; overflow: visible; }
+.graph-intro .graph-lines, .graph-intro .logo-nodes { opacity: 0; }
+.graph-intro .klue-core { width: 154px; height: 154px; }
+.graph-expanded .graph-lines { animation: lines-in 1.1s cubic-bezier(.2,.8,.2,1) both; }
+.graph-expanded .logo-nodes { animation: nodes-in 1.25s cubic-bezier(.2,.8,.2,1) both; }
+.graph-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.graph-line { stroke-dashoffset: 20; animation: dash 3.5s linear infinite; }
+.graph-line-web { animation-delay: .4s; }
+.graph-line-code { animation-delay: .8s; }
+.graph-line-identity { animation-delay: 1.2s; }
+.graph-line-data { animation-delay: 1.6s; }
+.graph-line-productivity { animation-delay: 2s; }
+.klue-core { position: absolute; left: 50%; top: 50%; z-index: 3; display: grid; place-items: center; width: 116px; height: 116px; padding: 24px; transform: translate(-50%, -50%); border: 1px solid #1e9b63; border-radius: 999px; background: #fff; transition: width .95s cubic-bezier(.2,.8,.2,1), height .95s cubic-bezier(.2,.8,.2,1), border-color .3s; }
+.klue-core img { width: 100%; height: 100%; object-fit: contain; }
+.logo-nodes { position: absolute; inset: 0; }
+.logo-node { position: absolute; display: grid; place-items: center; width: 104px; height: 104px; transform: translate(-50%, -50%); border: 1px solid #cdd6d5; border-radius: 999px; background: #fff; transition: border-color .25s, transform .25s; }
+.logo-node img { width: 58%; height: 58%; object-fit: contain; }
+.logo-node:hover, .logo-node-active { border-color: #1e9b63; transform: translate(-50%, -50%) scale(1.12); }
 .radar-sweep { position: absolute; left: 50%; top: 50%; width: 42%; height: 42%; transform: translate(-50%, -50%); border: 1px solid #dce5e2; border-radius: 999px; animation: pulse 4s ease-in-out infinite; }
+@keyframes lines-in { from { opacity: 0; transform: scale(.72); } to { opacity: 1; transform: scale(1); } }
+@keyframes nodes-in { from { opacity: 0; transform: scale(.35); } to { opacity: 1; transform: scale(1); } }
+@keyframes dash { to { stroke-dashoffset: -20; } }
 @keyframes pulse { 0%,100% { opacity: .45; transform: translate(-50%, -50%) scale(.94); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); } }
-@media (max-width: 640px) { .logo-node { width: 72px; height: 72px; } }
-@media (prefers-reduced-motion: reduce) { .radar-sweep { animation: none; } }
+@media (max-width: 640px) { .logo-node { width: 72px; height: 72px; } .klue-core { width: 84px; height: 84px; padding: 18px; } }
+@media (prefers-reduced-motion: reduce) { .radar-sweep, .graph-line, .graph-expanded .graph-lines, .graph-expanded .logo-nodes { animation: none; } }
