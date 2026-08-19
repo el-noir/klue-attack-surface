@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { CartesianGrid, Label, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart'
 
@@ -21,9 +20,12 @@ function Point({ cx, cy, payload }: { cx?: number; cy?: number; payload?: (typeo
 
   return (
     <g className={payload.featured ? 'benchmark-point benchmark-point-featured' : 'benchmark-point'}>
-      {payload.featured && <circle cx={cx} cy={cy} r={28} fill="#1e9b63" opacity={0.1} />}
+      {payload.featured && <circle className="benchmark-pulse" cx={cx} cy={cy} r={25} fill="none" stroke="#1e9b63" strokeWidth={1.5} />}
       <circle cx={cx} cy={cy} r={payload.featured ? 8 : 6} fill={payload.color} stroke="#f7f8f6" strokeWidth={3} />
-      <text x={cx + 13} y={cy - 12} fill="#26332f" fontSize={12} fontWeight={payload.featured ? 700 : 500}>
+      {payload.featured && (
+        <image href="/icon.svg" x={cx + 13} y={cy - 25} width={24} height={24} aria-label="KLUE logo" />
+      )}
+      <text x={cx + (payload.featured ? 43 : 13)} y={cy - 7} fill="#26332f" fontSize={12} fontWeight={payload.featured ? 700 : 500}>
         {payload.name}
       </text>
     </g>
@@ -33,9 +35,6 @@ function Point({ cx, cy, payload }: { cx?: number; cy?: number; payload?: (typeo
 export function BenchmarkPage() {
   return (
     <main className="benchmark-page" aria-label="KLUE benchmark graph">
-      <Link href="/" aria-label="KLUE home" className="benchmark-logo">
-        <img src="/icon.svg" alt="KLUE" />
-      </Link>
       <section className="benchmark-graph" aria-labelledby="benchmark-title">
         <h1 id="benchmark-title" className="sr-only">Precision and recall benchmark</h1>
         <ChartContainer config={chartConfig} className="h-[min(88svh,820px)] w-full">
@@ -47,8 +46,8 @@ export function BenchmarkPage() {
             <YAxis type="number" dataKey="precision" domain={[0, 100]} ticks={[0, 20, 40, 60, 80, 100]} tickLine={false} axisLine={false} tick={{ fill: '#71817b', fontSize: 12 }}>
               <Label value="Precision" angle={-90} position="insideLeft" offset={12} fill="#71817b" fontSize={12} />
             </YAxis>
-            <ReferenceLine x={76.5} stroke="#1e9b63" strokeDasharray="4 6" opacity={0.3} />
-            <ReferenceLine y={100} stroke="#1e9b63" strokeDasharray="4 6" opacity={0.3} />
+            <ReferenceLine x={50} stroke="#cdd6d5" strokeDasharray="3 7" />
+            <ReferenceLine y={50} stroke="#cdd6d5" strokeDasharray="3 7" />
             <Tooltip cursor={{ stroke: '#cdd6d5' }} content={<ChartTooltipContent hideLabel />} />
             <Scatter data={scanners} shape={<Point />} />
           </ScatterChart>
