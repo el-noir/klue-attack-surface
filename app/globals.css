@@ -211,15 +211,11 @@
 @media (max-width: 640px) { .logo-node { width: 72px; height: 72px; } .klue-core { width: 84px; height: 84px; padding: 18px; } }
 @media (prefers-reduced-motion: reduce) { .radar-sweep, .graph-line, .graph-expanded .graph-lines, .graph-expanded .logo-nodes, .graph-branch, .signal, .graph-expanded .scan-ring, .network-link, .klue-core { animation: none; opacity: 1; } }
 
-.benchmark-page { min-height: 100svh; background: #f7f8f6; color: #26332f; padding: 26px clamp(20px, 5vw, 72px) 40px; }
-.benchmark-header { display: flex; align-items: center; justify-content: space-between; max-width: 1180px; margin: 0 auto; }
-.benchmark-logo { display: block; width: 34px; height: 34px; transition: transform .25s ease; }
+.benchmark-page { min-height: 100svh; background: #f7f8f6; color: #26332f; padding: 18px clamp(16px, 3vw, 42px) 22px; position: relative; }
+.benchmark-logo { position: absolute; left: clamp(18px, 3vw, 42px); top: 18px; z-index: 2; display: block; width: 30px; height: 30px; transition: transform .25s ease; }
 .benchmark-logo:hover { transform: scale(1.08); }
 .benchmark-logo img { width: 100%; height: 100%; object-fit: contain; }
-.benchmark-nav { display: flex; align-items: center; gap: 22px; color: #71817b; font-size: 13px; }
-.benchmark-nav a { transition: color .2s ease; }
-.benchmark-nav a:hover, .benchmark-nav [aria-current="page"] { color: #26332f; }
-.benchmark-graph { max-width: 1180px; margin: 5vh auto 0; animation: benchmark-rise .9s cubic-bezier(.2,.8,.2,1) both; }
+.benchmark-graph { max-width: 1240px; margin: 0 auto; animation: benchmark-rise .9s cubic-bezier(.2,.8,.2,1) both; }
 .benchmark-point { animation: benchmark-point-in .7s cubic-bezier(.2,.8,.2,1) both; }
 .benchmark-point-featured { animation-delay: .35s; }
 @keyframes benchmark-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
